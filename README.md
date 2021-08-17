@@ -13,4 +13,4 @@ While the extension cannot be used in other sites, it does show how video frames
 
 For more information, file an issue, or contact One Frame Link on Twitter:
 
-![Twitter Follow](https://img.shields.io/twitter/follow/OneFrameLink?style=flat-square)
+https://twitter.com/OneFrameLink
