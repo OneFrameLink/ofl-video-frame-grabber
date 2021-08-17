@@ -16,14 +16,31 @@ function onMessage(
     sendResponse: (response: any) => void
 ) {
     // If not a message to find a video request, bounce.
+    // Don't bother to send a message back, as we don't know
+    // what this is exactly.
     if (message.type !== 'FindVideoFrameRequest')
         return false 
   
     // Get the video elements, if there is a single one.
     const elements = document.getElementsByTagName('video')
 
+    // The return value.
+    // The message.
+    const response: FindVideoFrameResponse = {
+        type: 'FindVideoFrameResponse'
+    }
+
     // If there is not exactly one video element, bail.
-    if (elements.length !== 1) return false
+    if (elements.length !== 1) {
+        // Log.
+        console.debug('[OFL Video Frame Grabber - content script] - Could not find any video elements.')
+
+        // Send the message.
+        sendResponse(response)
+
+        // Return true.
+        return true
+    }
 
     // Get the video.
     const video = elements[0]
@@ -43,8 +60,11 @@ function onMessage(
         // Log.
         console.error('[OFL Video Frame Grabber - content script] - Could not get 2d context for canvas.')
 
-        // Bail.
-        return false
+        // Send the message.
+        sendResponse(response)
+
+        // Return true.
+        return true
     }
 
     // Draw the image.
@@ -53,11 +73,8 @@ function onMessage(
     // Convert to a url.
     const url = canvas.toDataURL("image/png")
 
-    // The message.
-    const response: FindVideoFrameResponse = {
-        type: 'FindVideoFrameResponse',
-        url
-    }
+    // Set the url.
+    response.url = url
 
     // Send the response.
     sendResponse(response)
