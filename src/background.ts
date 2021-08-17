@@ -11,22 +11,10 @@ function onMessageExternal(
     __: chrome.runtime.MessageSender,
     sendResponse: (response: GetVideoFrameResponse) => void
 ) {
-    // Log.
-    console.debug(
-        '[OflTranscriptionAssistant.background.onMessageExternal] - getVideoFrameRequest', 
-        getVideoFrameRequest
-    )
-
     // Query for the active window
     chrome.tabs.query(
         { active: true, currentWindow: true }, 
         (tabs) => {
-            // Log.
-            console.debug(
-                '[OflTranscriptionAssistant.background.onMessageExternal.tabs.query.callback] - tabs', 
-                tabs
-            )
-
             // If there isn't just one, bail.
             if (tabs.length !== 1) return
 
@@ -66,9 +54,4 @@ function onMessageExternal(
 //////////////////////////////////////////////////
 // Callback registration
 //////////////////////////////////////////////////
-// Log.
-console.debug(
-    '[OflTranscriptionAssistant.background] - listener registered'
-)
-
 chrome.runtime.onMessageExternal.addListener(onMessageExternal)

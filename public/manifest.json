@@ -27,8 +27,7 @@
 
     "externally_connectable": {
         "matches": [
-            "https://*.oneframelink.com/*",
-            "https://*.csb.app/*"
+            "https://*.oneframelink.com/*"
         ]
     },
 

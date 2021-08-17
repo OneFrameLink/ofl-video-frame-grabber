@@ -17,7 +17,7 @@ function onMessage(
 ) {
     // If not a message to find a video request, bounce.
     if (message.type !== 'FindVideoFrameRequest')
-        return    
+        return false 
   
     // Get the video elements, if there is a single one.
     const elements = document.getElementsByTagName('video')
@@ -38,9 +38,14 @@ function onMessage(
     // Get the context.
     const context = canvas.getContext("2d")
 
-    // If null, throw.
-    if (context === null)
-        throw new Error('Could not get 2d context for canvas.')
+    // If null, bail.
+    if (context === null) {
+        // Log.
+        console.error('[OFL Video Frame Grabber - content script] - Could not get 2d context for canvas.')
+
+        // Bail.
+        return false
+    }
 
     // Draw the image.
     context.drawImage(video, 0, 0);
