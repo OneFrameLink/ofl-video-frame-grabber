@@ -1,12 +1,16 @@
 {
     "manifest_version": 2,
 
-    "name": "One Frame Link Transcription Assistant",
-    "description": "Extension to assist with transcription for One Frame Link.",
+    "name": "One Frame Link Video Frame Grabber",
+    "description": "Allows the programmatic grabbing of frames from video elements (including those loaded in iframes).",
     "version": "1.0",
 
     "browser_action": {
-        "default_icon": "icon.png"
+        "default_icon": {
+            "16": "icons/16.png",
+            "32": "icons/32.png",
+            "64": "icons/64.png"
+        }
     },
 
     "content_scripts": [
@@ -23,13 +27,13 @@
 
     "externally_connectable": {
         "matches": [
-            "https://*.oneframelink.com/*"
+            "https://*.oneframelink.com/*",
+            "https://*.csb.app/*"
         ]
     },
 
     "permissions": [
         "storage",
-        "<all_urls>",
-        "all_frames"
+        "<all_urls>"
     ]
 }
