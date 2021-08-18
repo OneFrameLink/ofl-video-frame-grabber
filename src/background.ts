@@ -11,6 +11,14 @@ function onMessageExternal(
     __: chrome.runtime.MessageSender,
     sendResponse: (response: GetVideoFrameResponse) => void
 ) {
+    // If the request does not have the type
+    // we expect, bail.
+    if (getVideoFrameRequest.type !== 'GetVideoFrameRequest')
+        return false
+
+    // Log.
+    console.debug('[OFL Video Frame Grabber - background script] - Received request')
+
     // Query for the active window
     chrome.tabs.query(
         { active: true, currentWindow: true }, 
@@ -34,6 +42,9 @@ function onMessageExternal(
                 tab.id,
                 request,
                 (findResponse: FindVideoFrameResponse) => {
+                    // Log.
+                    console.debug('[OFL Video Frame Grabber - background script - sendMessage callback] - findResponse', findResponse)
+
                     // Construct the response.
                     const response: GetVideoFrameResponse = {
                         type: 'GetVideoFrameResponse',

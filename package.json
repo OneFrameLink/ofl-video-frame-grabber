@@ -1,7 +1,7 @@
 {
-  "name": "ofl-video-frame-grabber",
+  "name": "chrome-extension-typescript-starter",
   "version": "1.0.0",
-  "description": "Allows programmatic access to frames from video elements (including those loaded in iframes).",
+  "description": "chrome-extension-typescript-starter",
   "main": "index.js",
   "scripts": {
     "watch": "webpack --config webpack/webpack.dev.js --watch",
@@ -11,10 +11,10 @@
     "style": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "author": "",
-  "license": "Apache 2.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OneFrameLink/ofl-video-frame-grabber.git"
+    "url": "https://github.com/chibat/chrome-extension-typescript-starter.git"
   },
   "dependencies": {
     "react": "^17.0.1",

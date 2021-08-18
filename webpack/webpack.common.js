@@ -6,17 +6,11 @@ const srcDir = path.join(__dirname, "..", "src");
 module.exports = {
     entry: {
       background: path.join(srcDir, 'background.ts'),
-      content_script: path.join(srcDir, 'content_script.tsx'),
+      content_script: path.join(srcDir, 'content_script.ts'),
     },
     output: {
         path: path.join(__dirname, "../dist/js"),
         filename: "[name].js",
-    },
-    optimization: {
-        splitChunks: {
-            name: "vendor",
-            chunks: "initial",
-        },
     },
     module: {
         rules: [
